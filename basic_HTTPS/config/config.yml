@@ -1,0 +1,19 @@
+# traefik/config.yml
+http:
+  routers:
+    traefik:
+      rule: "Host(`traefik.traefik.me`)"
+      service: "api@internal"
+      tls:
+        domains:
+          - main: "traefik.me"
+            sans:
+              - "*.traefik.me"
+          - main: "domain.local"
+            sans:
+              - "*.domain.local"
+
+tls:
+  certificates:
+    - certFile: "/etc/certs/cert.pem"
+      keyFile: "/etc/certs/privkey.pem"
